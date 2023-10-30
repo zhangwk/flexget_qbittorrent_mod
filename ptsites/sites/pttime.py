@@ -18,7 +18,7 @@ class MainClass(Attendance, ReseedPasskey):
     def sign_in_build_workflow(self, entry: SignInEntry, config: dict) -> list[Work]:
         return [
             Work(
-                url='/attendance.php',
+                url='/attendance.php?uid=78884',
                 method=self.sign_in_by_get,
                 succeed_regex=[
                     '这是你的第.*?次签到，已连续签到.*天，本次签到获得.*个魔力值。',
