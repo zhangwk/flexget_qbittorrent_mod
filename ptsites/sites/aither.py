@@ -44,11 +44,11 @@ class MainClass(Unit3D):
             },
             'details': {
                 'uploaded': {
-                    'regex': r'Upload.+?([\d.]+.?¬†G[ZEPTGMK]?iB)',
+                    'regex': r'Upload.+?([\d.]+.?[ZEPTGMK]?iB)',
                     'handle': self.remove_symbol
                 },
                 'downloaded': {
-                    'regex': r'Download.+?([\d.]+.?¬†G[ZEPTGMK]?iB)',
+                    'regex': r'Download.+?([\d.]+.?[ZEPTGMK]?iB)',
                     'handle': self.remove_symbol
                 },
                 'points': {
@@ -58,15 +58,15 @@ class MainClass(Unit3D):
                     'regex': 'title="Ratio".*?</i>.+?(\\d[\\d,. ]*)',
                 },
                 'join_date': {
-                    'regex': r'Registration date: (\d{4}-\d{2}-\d{2})',
+                    'regex': r'Registration date.*?(\d{4}-\d{2}-\d{2})',
                     'handle': handle_join_date
                 },
                 'hr': {
-                    'regex': r'Active Warnings.+?(\d+)'
+                    'regex': r'Hit and Run Count.*?(\d+)'
                 }
             }
         })
         return selector
 
     def remove_symbol(self, value: str):
-        return value.replace('¬†', '')
+        return value.replace('\xa0', '')

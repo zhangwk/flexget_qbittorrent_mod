@@ -7,19 +7,21 @@ from ..utils.value_handler import size
 
 
 class MainClass(Attendance, ReseedPasskey):
-    URL: Final = 'https://zmpt.cc/'
+    URL: Final = 'https://kufei.org/'
     USER_CLASSES: Final = {
-        'downloaded': [size(750, 'GiB'), size(3, 'TiB')],
-        'share_ratio': [3.05, 4.55],
+        'downloaded': [size(1.92, 'TiB'), size(10, 'TiB')],
+        'share_ratio': [4, 6],
+        'points': [1200000, 2000000],
         'days': [280, 700]
     }
+
     @property
     def details_selector(self) -> dict:
         selector = super().details_selector
         net_utils.dict_merge(selector, {
             'details': {
                 'points': {
-                    'regex': r'电力值.*?([\d,.]+)'
+                    'regex': (r'(做种积分).*?([\d,.]+)', 2)
                 },
             }
         })

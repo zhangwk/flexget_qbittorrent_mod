@@ -284,16 +284,27 @@ class MainClass(NexusPHP, ReseedPasskey):
         selector = super().details_selector
         net_utils.dict_merge(selector, {
             'details': {
+                'uploaded': {
+                    'regex': r'上传量:  ([\d.]+ [ZEPTGMK]?i?B)'
+                    # 'handle': self.handle_suffix
+                },
+                'downloaded': {
+                    'regex': r'下载量:  ([\d.]+ [ZEPTGMK]?i?B)'
+                    # 'handle': self.handle_suffix
+                },
                 'points': {
-                    'regex': ('UCoin.*?([\\d,.]+)\\(([\\d,.]+)\\)', 2)
+                    'regex': r'UCoin.*?\d+\(([\d,.]+)'
                 },
                 'seeding': {
-                    'regex': ('客[户戶]端.*?(\\d+).*?(\\d+).*?(\\d+)', 2)
+                    'regex': r'客户端.*?: \d+ \((\d+)'
                 },
                 'leeching': {
-                    'regex': ('客[户戶]端.*?(\\d+).*?(\\d+).*?(\\d+)', 3)
+                    'regex': r'客户端.*?: \d+ \(\d+ (\d+)'
                 },
                 'hr': None
             }
         })
         return selector
+
+    # def handle_suffix(self, value: str):
+    #     return value.replace('烫', 'TiB')
