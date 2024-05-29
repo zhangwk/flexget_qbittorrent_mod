@@ -102,7 +102,8 @@ class MainClass(NexusPHP, Reseed):
                 **kwargs,
                 ) -> Response | None:
         key = entry.get('site_config').get('key')
-        return super().request(entry, 'POST', url, headers={'x-api-key': key})
+        autho = entry.get('site_config').get('autho')
+        return super().request(entry, 'POST', url, headers={'x-api-key': key , 'Authorization': autho})
 
     def get_messages(self, entry: SignInEntry, config: dict) -> None:
         return
